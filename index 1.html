@@ -1,0 +1,483 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2907
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\partightenfactor0
+
+\f0\b\fs40 \cf0 \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f1\b0\fs26 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+<meta charset="utf-8">\
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\
+<title>NR Appeal Review</title>\
+<link rel="preconnect" href="https://fonts.googleapis.com">\
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">\
+<style>\
+/* Layout: an intake column (the NR going in) beside a review column styled after the 5400-4 record block; stacks on phones. */\
+:root\{\
+  --bg:#f3f5f4; --paper:#ffffff; --ink:#15201b; --muted:#5b6a63; --line:#d5ddd9; --soft:#e9eeeb;\
+  --accent:#1d5f45; --accent-ink:#ffffff; --accent-soft:#e1efe8;\
+  --good:#1d6b45; --good-bg:#e2f2e9; --warn:#8a5a00; --warn-bg:#fbefd5; --bad:#a3271f; --bad-bg:#fbe4e1;\
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;\
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\
+\}\
+@media (prefers-color-scheme:dark)\{:root:not([data-theme="light"])\{\
+  --bg:#101614; --paper:#17201c; --ink:#e4ebe7; --muted:#9aaba3; --line:#2c3a34; --soft:#1e2924;\
+  --accent:#5fbf92; --accent-ink:#0c1511; --accent-soft:#1b3328;\
+  --good:#7fd3a6; --good-bg:#16301f; --warn:#f0c264; --warn-bg:#352a12; --bad:#ff8f84; --bad-bg:#3a1c19; color-scheme:dark\}\}\
+:root[data-theme="dark"]\{\
+  --bg:#101614; --paper:#17201c; --ink:#e4ebe7; --muted:#9aaba3; --line:#2c3a34; --soft:#1e2924;\
+  --accent:#5fbf92; --accent-ink:#0c1511; --accent-soft:#1b3328;\
+  --good:#7fd3a6; --good-bg:#16301f; --warn:#f0c264; --warn-bg:#352a12; --bad:#ff8f84; --bad-bg:#3a1c19; color-scheme:dark\}\
+*\{box-sizing:border-box\}\
+html\{color-scheme:light\}\
+[hidden]\{display:none!important\}\
+body\{margin:0\}\
+body\{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:20px 48px\}\
+.wrap\{max-width:1180px;margin:0 auto;display:grid;gap:20px\}\
+header.top\{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px;border-bottom:2px solid var(--ink);padding-bottom:12px\}\
+header.top h1\{font-size:1.6rem;font-weight:800;letter-spacing:-.01em;margin:0;text-wrap:balance\}\
+header.top p\{margin:0;color:var(--muted);max-width:60ch\}\
+.form-id\{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)\}\
+.cols\{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:20px;align-items:start\}\
+@media (max-width:860px)\{.cols\{grid-template-columns:minmax(0,1fr)\}\}\
+.panel\{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:14px;min-width:0\}\
+.intake\{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)\}\
+@media (max-width:860px)\{.intake\{position:static\}\}\
+label.lbl\{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px\}\
+textarea,input[type=text],input[type=password],select\{width:100%;font:inherit;font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 10px;resize:vertical\}\
+textarea:focus,input:focus,button:focus-visible,.drop:focus-visible\{outline:2px solid var(--accent);outline-offset:1px\}\
+.hint\{font-size:.8rem;color:var(--muted);margin-top:4px\}\
+.drop\{border:1.5px dashed var(--line);border-radius:6px;padding:16px;text-align:center;cursor:pointer;background:var(--bg);display:grid;gap:4px\}\
+.drop.over\{border-color:var(--accent);background:var(--accent-soft)\}\
+.drop strong\{font-weight:600\}\
+.file-chip\{font-family:var(--f-mono);font-size:.8rem;display:flex;justify-content:space-between;gap:8px;align-items:center;background:var(--soft);padding:6px 10px;border-radius:4px\}\
+.file-chip button\{background:none;border:0;color:var(--muted);cursor:pointer;font:inherit\}\
+details.paste summary\{cursor:pointer;font-size:.85rem;color:var(--accent);font-weight:600\}\
+details.paste textarea\{margin-top:8px\}\
+.btn\{font:inherit;font-weight:700;border-radius:4px;padding:10px 14px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)\}\
+.btn:disabled\{opacity:.55;cursor:not-allowed\}\
+.btn.ghost\{background:transparent;color:var(--accent)\}\
+.btn.sm\{padding:6px 10px;font-size:.82rem\}\
+.status\{font-size:.85rem;color:var(--muted);min-height:1.2em\}\
+.status.err\{color:var(--bad)\}\
+.history\{display:grid;gap:6px\}\
+.history button\{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:7px 10px;cursor:pointer;font:inherit;font-size:.84rem;color:var(--ink);display:flex;justify-content:space-between;gap:8px\}\
+.history button.on\{border-color:var(--accent);background:var(--accent-soft)\}\
+.history .mono\{font-family:var(--f-mono);font-size:.78rem\}\
+\
+/* Review */\
+.review\{display:grid;gap:18px;min-width:0\}\
+.banner\{font-size:.82rem;background:var(--warn-bg);color:var(--warn);padding:8px 12px;border-radius:4px\}\
+.record\{background:var(--paper);border:1.5px solid var(--ink);border-radius:2px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))\}\
+@media (max-width:560px)\{.record\{grid-template-columns:repeat(2,minmax(0,1fr))\}\}\
+.cell\{padding:8px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0\}\
+.cell .k\{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em\}\
+.cell .v\{font-family:var(--f-mono);font-size:.86rem;overflow-wrap:anywhere\}\
+.cell.wide\{grid-column:1/-1\}\
+.sec\{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;gap:10px;min-width:0\}\
+.sec h2\{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;margin:0;color:var(--muted);font-weight:700\}\
+.sec p\{margin:0;max-width:72ch\}\
+.verdict\{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline\}\
+.verdict .big\{font-size:1.35rem;font-weight:800\}\
+.pill\{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;white-space:nowrap\}\
+.p-strong,.p-yes\{background:var(--good-bg);color:var(--good)\}\
+.p-moderate,.p-partly\{background:var(--warn-bg);color:var(--warn)\}\
+.p-weak,.p-no\{background:var(--bad-bg);color:var(--bad)\}\
+.p-none\{background:var(--soft);color:var(--muted)\}\
+ul.pts\{margin:0;padding-left:1.1em;display:grid;gap:6px;max-width:74ch\}\
+.cites\{display:grid;gap:0;border-top:1px solid var(--line)\}\
+.cite\{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) auto;gap:6px 14px;padding:10px 0;border-bottom:1px solid var(--line);align-items:start\}\
+@media (max-width:560px)\{.cite\{grid-template-columns:minmax(0,1fr) auto\}.cite .reqs\{grid-column:1/-1\}\}\
+.cite .reg\{font-family:var(--f-mono);font-size:.86rem;font-weight:500\}\
+.cite .reqs\{font-size:.9rem\}\
+.cite .reqs .a\{color:var(--muted);margin-top:3px\}\
+.grounds\{display:grid;gap:10px\}\
+.ground\{border:1px solid var(--line);border-left-width:4px;border-radius:4px;padding:12px 14px;display:grid;gap:6px\}\
+.ground.g-strong\{border-left-color:var(--good)\} .ground.g-moderate\{border-left-color:var(--warn)\} .ground.g-weak\{border-left-color:var(--bad)\}\
+.ground .hd\{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap\}\
+.ground .hd strong\{font-weight:700\}\
+.ground .dep\{font-size:.84rem;color:var(--muted)\}\
+.rec\{background:var(--accent-soft);border-color:transparent\}\
+.rec p\{font-weight:500\}\
+.letter-tools\{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center\}\
+.letter\{font-family:var(--f-body);font-size:.92rem;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:16px;max-height:520px;overflow:auto;margin:0;overflow-wrap:anywhere\}\
+.checks\{display:grid;gap:6px;margin:0;padding:0;list-style:none\}\
+.checks label\{display:flex;gap:8px;align-items:flex-start;cursor:pointer\}\
+.checks input\{margin-top:4px;accent-color:var(--accent)\}\
+.empty\{color:var(--muted);font-style:italic\}\
+.busy .review\{opacity:.45;pointer-events:none\}\
+@media (prefers-reduced-motion:no-preference)\{.review\{transition:opacity .2s\}\}\
+.note\{font-size:.78rem;color:var(--muted)\}\
+</style>\
+\
+</head>\
+<body>\
+<div class="wrap" id="app">\
+  <header class="top">\
+    <div>\
+      <div class="form-id">FSIS 5400-4 \'b7 Noncompliance Record</div>\
+      <h1>NR Appeal Review</h1>\
+    </div>\
+    <p>Upload an NR, state the grounds you're considering, and get a straight read on whether an appeal holds up, plus a draft letter built on the arguments that do.</p>\
+  </header>\
+\
+  <div class="cols">\
+    <aside class="panel intake" aria-label="NR intake">\
+      <div>\
+        <span class="lbl">1 \'b7 The NR</span>\
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload NR PDF">\
+          <strong>Drop the NR PDF here</strong>\
+          <span class="hint">or click to choose a file \'b7 scanned PDFs work too</span>\
+        </div>\
+        <input type="file" id="file" accept="application/pdf,.pdf" hidden>\
+        <div class="file-chip" id="fileChip" hidden><span id="fileName"></span><button type="button" id="clearFile" aria-label="Remove file">Remove</button></div>\
+        <details class="paste" id="pasteBox">\
+          <summary>Or paste the NR text</summary>\
+          <textarea id="nrText" rows="6" placeholder="Paste blocks 1\'9615 and the continuation page"></textarea>\
+        </details>\
+      </div>\
+      <div>\
+        <label class="lbl" for="grounds">2 \'b7 Grounds you're considering</label>\
+        <textarea id="grounds" rows="3" placeholder="e.g. Condensation was present but not dripping; no product affected; SSOP and SPS monitoring done on time."></textarea>\
+      </div>\
+      <div>\
+        <label class="lbl" for="facts">3 \'b7 Facts the NR doesn't show <span style="text-transform:none;letter-spacing:0;font-weight:400">(optional)</span></label>\
+        <textarea id="facts" rows="3" placeholder="Monitoring times and results, root cause of the associated NR, PM records, who the plant manager actually is\'85"></textarea>\
+        <div class="hint">These change the analysis most. Leave blank and the review will tell you what to gather.</div>\
+      </div>\
+      <div>\
+        <label class="lbl" for="signer">Letter signed by</label>\
+        <input type="text" id="signer" value="" placeholder="Name, Title, Company">\
+      </div>\
+      <details class="paste" id="settings">\
+        <summary>API settings</summary>\
+        <div style="display:grid;gap:10px;margin-top:10px">\
+          <div>\
+            <label class="lbl" for="apiKey">Gemini API key</label>\
+            <input type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="AIzaSy\'85">\
+            <div class="hint">Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>.</div>\
+          </div>\
+          <label style="display:flex;gap:8px;align-items:center;font-size:.85rem"><input type="checkbox" id="rememberKey"> Remember key on this device</label>\
+          <div>\
+            <label class="lbl" for="model">Model</label>\
+            <select id="model">\
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash (fast, multimodal)</option>\
+              <option value="gemini-2.5-pro">Gemini 2.5 Pro (deep reasoning)</option>\
+            </select>\
+          </div>\
+        </div>\
+      </details>\
+      <button class="btn" id="go" type="button">Analyze NR</button>\
+      <div class="status" id="status" role="status" aria-live="polite"></div>\
+      <div id="histWrap" hidden>\
+        <span class="lbl">Recent reviews (this browser)</span>\
+        <div class="history" id="history"></div>\
+      </div>\
+    </aside>\
+\
+    <main class="review" id="review" aria-live="polite"></main>\
+  </div>\
+</div>\
+\
+<script>\
+(() => \{\
+"use strict";\
+const $ = (id) => document.getElementById(id);\
+const store = \{\
+  get(k, d)\{ try\{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; \}catch(e)\{ return d; \} \},\
+  set(k, v)\{ try\{ localStorage.setItem(k, JSON.stringify(v)); \}catch(e)\{\} \}\
+\};\
+\
+const EXAMPLE = \{\
+  id:"example", example:true, at:"2026-10-08",\
+  record:\{number:"ABC-26-101-NR",date:"10/05/2026",establishment:"P00000",type:"Food Safety",\
+    regulations:["9 CFR 416.2(d) Ventilation","9 CFR 416.13(b) Conduct procedures in the SSOP"],\
+    inspector:"SCSI [Inspector]",addressedTo:"Doe, John (Plant Manager)",personnelNotified:"Smith, Alex; Lee, Jordan",\
+    associatedNRs:["ABC-26-097-NR (10/01/2026)"],task:"Operational SSOP Review and Observation",location:"Picking Room, Picking Line #1"\},\
+  summary:"Heavily beaded condensation, about 10 \'d7 20 ft, on the Picking Room ceiling directly over Picking Line #1. No product or product contact surfaces were affected. A broken belt on the overhead humidity-control unit was the cause; the line was shut down and conditions restored by 1358. The NR is linked to ABC-26-097-NR from four days earlier and states prior preventive measures were ineffective.",\
+  proposedGrounds:\{verdict:"weak",headline:"\\"Not dripping, no product affected\\" is likely to be denied",\
+    reasoning:[\
+      "416.2(d) requires control of condensation to prevent adulteration and the creation of insanitary conditions. Dripping is not required; heavy beading over product contact equipment is the standard insanitary-condition fact pattern.",\
+      "The inspector already wrote that no product or product contact surfaces were affected. Repeating it gives the reviewer nothing new; the NR was written on condition, not contamination.",\
+      "Shutting down the line for a broken belt reads as an acknowledgment that the condition needed immediate correction.",\
+      "This is the second condensation NR in five days. Appealing on grounds that minimize the condition invites closer scrutiny of the trend."]\},\
+  citations:[\
+    \{regulation:"9 CFR 416.2(d)",requires:"Ventilation adequate to control condensation so that it does not adulterate product or create insanitary conditions.",assessment:"The facts as written meet the standard for a citation. Accept this portion.",contestable:"no"\},\
+    \{regulation:"9 CFR 416.13(b)",requires:"Conduct the procedures in the SSOP as written and monitor their implementation.",assessment:"MF 500 1.4 is an outcome standard and nothing shipped adulterated. Contestable if records show monitoring ran on schedule and the belt failed between checks.",contestable:"partly"\}],\
+  grounds:[\
+    \{title:"The SSOP procedure was followed (416.13(b))",strength:"moderate",argument:"MF 500 1.4 requires control of condensation so contaminated or adulterated product does not ship. None did. Scheduled monitoring was performed and the belt failed between checks; the plant responded immediately.",dependsOn:"The SSOP must define a monitoring frequency for the Picking Room and the 10/05 records must show it was met. Without a defined frequency, revise the SSOP instead of appealing."\},\
+    \{title:"Not a recurrence of ABC-26-097-NR",strength:"moderate",argument:"If 207 involved a different area, unit or failure mode, 216 is a new, unforeseeable equipment failure and does not show 207's preventive measures failed.",dependsOn:"Drop this argument if 207 involved the same overhead unit or belt."\},\
+    \{title:"Clerical errors on the record",strength:"weak",argument:"Block 5 names John Doe as Plant Manager while Block 15 names Alex Smith. The page 1 corrective-action line is garbled. Ask for correction; these will not void the NR.",dependsOn:"None."\}],\
+  clerical:["Block 5 (Doe, Plant Manager) conflicts with Block 15 (Smith, Plant Manager).","Page 1 corrective-action text is truncated (\\"Under Mr. See Continuation Page\\")."],\
+  risks:["Two linked condensation NRs in five days is a trend that can support a Notice of Intended Enforcement under 9 CFR 500.4.","An appeal that appears to minimize the condition may cost goodwill with the inspection team."],\
+  recommendation:"Accept the 416.2(d) portion. Appeal the 416.13(b) citation and the linkage to 207 only if records support them. Either way, document strengthened preventive measures: air-handler belts on the PM schedule and a defined condensation monitoring frequency for the Picking Room.",\
+  letter:"To: [Frontline Supervisor name], Frontline Supervisor, USDA-FSIS [District]\\nCC: SCSI [Inspector]; Alex Smith, Plant Manager\\nFrom: [Your Name], [Title], [Company]\\nDate: [date]\\nRe: Appeal of Noncompliance Record ABC-26-101-NR, Establishment P00000\\n\\n[Company] respectfully appeals NR ABC-26-101-NR, issued 10/05/2026, with respect to the citation of 9 CFR 416.13(b) and its characterization as a recurrence of NR ABC-26-097-NR. This appeal is made in accordance with 9 CFR 381.35 and the appeal rights stated on FSIS Form 5400-4.\\n\\n1. The establishment conducted the procedures in its SSOP. SSOP MF 500 1.4 requires production to control condensation over product and product contact surfaces so that no contaminated or adulterated product is shipped. As the NR itself documents, no product or product contact surfaces were affected. Operational SSOP monitoring of the Picking Room was performed as scheduled on 10/05/2026 [at ___ and ___ hours, per attached records], with no condensation observed. The condition resulted from a sudden mechanical failure, a broken belt on the overhead humidity-control unit, that occurred between scheduled checks. The establishment immediately stopped Picking Line #1, identified the cause, and restored sanitary conditions, which FSIS verified at approximately 1358 hours.\\n\\n2. This event is not a recurrence of ABC-26-097-NR. [NR 207 involved ___. The preventive measures for that event, ___, were implemented and remain effective.] The 10/05 condition arose from a separate, unforeseeable equipment failure.\\n\\n3. Requested corrections. Block 5 identifies John Doe as Plant Manager, while Block 15 identifies Alex Smith as Plant Manager; we request that the record reflect [correct name/title]. We also request that the corrective-action text on page 1 be corrected.\\n\\nAdditional preventive measures. Independent of this appeal, the establishment has [added the Picking Room air-handling unit belts to the weekly PM schedule / defined operational condensation monitoring in the Picking Room at ___], effective [date].\\n\\nWe request that the 416.13(b) citation and the linkage to ABC-26-097-NR be removed from this record. Supporting records are attached.\\n\\nRespectfully,\\n[Your Name]\\n[Title], [Company]",\
+  checklist:["Attach SSOP monitoring records for 10/05","Confirm the root cause in NR 207 (delete section 2 if same unit or belt)","Confirm the correct name and title for Block 5","Fill in the PM and monitoring changes actually made"]\
+\};\
+\
+let history = store.get("nr.history", []);\
+let current = history[0] || EXAMPLE;\
+let pdfFile = null;\
+let busy = false;\
+\
+function el(tag, attrs, ...kids)\{\
+  const n = document.createElement(tag);\
+  if (attrs) for (const [k,v] of Object.entries(attrs))\{\
+    if (v == null || v === false) continue;\
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v;\
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);\
+  \}\
+  for (const k of kids.flat()) if (k != null) n.append(k.nodeType ? k : document.createTextNode(String(k)));\
+  return n;\
+\}\
+const pill = (v) => \{ const s = String(v||"none").toLowerCase(); return el("span",\{class:"pill p-"+(["strong","moderate","weak","yes","partly","no"].includes(s)?s:"none"),text:s==="yes"?"contestable":s==="partly"?"partly contestable":s==="no"?"not contestable":s\}); \};\
+const list = (arr) => (arr && arr.length) ? el("ul",\{class:"pts"\}, arr.map(t => el("li",\{text:t\}))) : el("p",\{class:"empty",text:"None identified."\});\
+\
+function render()\{\
+  const r = current, R = $("review");\
+  R.replaceChildren();\
+  if (r.example) R.append(el("div",\{class:"banner",text:"Example: the review of ABC-26-101-NR from 10/08. Upload a new NR to run your own."\}));\
+  const rec = r.record || \{\};\
+  const cell = (k,v,wide) => el("div",\{class:"cell"+(wide?" wide":"")\}, el("div",\{class:"k",text:k\}), el("div",\{class:"v",text:(Array.isArray(v)?v.join("; "):v)||"\'97"\}));\
+  R.append(el("section",\{class:"record","aria-label":"Record details"\},\
+    cell("3 \'b7 Record",rec.number), cell("2 \'b7 Date",rec.date), cell("4 \'b7 Establishment",rec.establishment),\
+    cell("7 \'b7 Regulations",rec.regulations,true),\
+    cell("16 \'b7 Inspector",rec.inspector), cell("5 \'b7 Addressed to",rec.addressedTo), cell("8 \'b7 Associated NRs",rec.associatedNRs),\
+    cell("Location",rec.location,true)));\
+\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"What the NR says"\}), el("p",\{text:r.summary||""\})));\
+\
+  const pg = r.proposedGrounds || \{\};\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Your proposed grounds"\}),\
+    el("div",\{class:"verdict"\}, el("span",\{class:"big",text:pg.headline||"No grounds given"\}), pill(pg.verdict)),\
+    list(pg.reasoning)));\
+\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Each citation"\}),\
+    el("div",\{class:"cites"\}, (r.citations||[]).map(c => el("div",\{class:"cite"\},\
+      el("div",\{class:"reg",text:c.regulation\}),\
+      el("div",\{class:"reqs"\}, el("div",\{text:c.requires\}), el("div",\{class:"a",text:c.assessment\})),\
+      pill(c.contestable))))));\
+\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Where there is real ground"\}),\
+    el("div",\{class:"grounds"\}, (r.grounds||[]).length ? r.grounds.map(g => el("div",\{class:"ground g-"+String(g.strength||"").toLowerCase()\},\
+      el("div",\{class:"hd"\}, el("strong",\{text:g.title\}), pill(g.strength)),\
+      el("div",\{text:g.argument\}),\
+      g.dependsOn ? el("div",\{class:"dep",text:"Holds only if: "+g.dependsOn\}) : null)) : el("p",\{class:"empty",text:"No grounds with a realistic chance were found."\}))));\
+\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Risks to weigh"\}), list(r.risks)));\
+  if (r.clerical && r.clerical.length) R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Errors on the record"\}), list(r.clerical)));\
+  R.append(el("section",\{class:"sec rec"\}, el("h2",\{text:"Recommendation"\}), el("p",\{text:r.recommendation||""\})));\
+\
+  const copyBtn = el("button",\{class:"btn sm",type:"button",text:"Copy letter",onclick:() => copyLetter(copyBtn)\});\
+  const tools = el("div",\{class:"letter-tools"\}, el("h2",\{text:"Draft appeal letter"\}),\
+    el("div",\{style:"display:flex;gap:8px;flex-wrap:wrap"\}, copyBtn,\
+      el("button",\{class:"btn sm ghost",type:"button",text:"Download review (.md)",onclick:downloadMd\})));\
+  R.append(el("section",\{class:"sec"\}, tools,\
+    el("pre",\{class:"letter",id:"letter",text:r.letter||"No letter drafted: the review recommends against appealing."\}),\
+    el("div",\{class:"note",text:"Bracketed fields need your records before sending. Confirm the appeal channel and timing with your Frontline Supervisor."\})));\
+\
+  const done = store.get("nr.checks."+(r.id||"x"), \{\});\
+  R.append(el("section",\{class:"sec"\}, el("h2",\{text:"Before sending"\}),\
+    el("ul",\{class:"checks"\}, (r.checklist||[]).map((t,i) => \{\
+      const cb = el("input",\{type:"checkbox",id:"ck-"+i\});\
+      cb.checked = !!done[i];\
+      cb.addEventListener("change", () => \{ done[i] = cb.checked; store.set("nr.checks."+(r.id||"x"), done); \});\
+      return el("li",null, el("label",\{for:"ck-"+i\}, cb, el("span",\{text:t\})));\
+    \}))));\
+  renderHistory();\
+\}\
+\
+function renderHistory()\{\
+  const H = $("history"); H.replaceChildren();\
+  const items = [...history];\
+  if (!items.length)\{ $("histWrap").hidden = true; return; \}\
+  $("histWrap").hidden = false;\
+  for (const h of items.concat([EXAMPLE]))\{\
+    H.append(el("button",\{type:"button",class:h.id===current.id?"on":null,onclick:()=>\{current=h;render();\}\},\
+      el("span",\{class:"mono",text:(h.record&&h.record.number)||"Untitled NR"\}), el("span",\{text:h.example?"example":h.at\})));\
+  \}\
+\}\
+\
+async function copyLetter(btn)\{\
+  const t = current.letter || "";\
+  try \{ await navigator.clipboard.writeText(t); btn.textContent = "Copied"; setTimeout(()=>btn.textContent="Copy letter",1600); \}\
+  catch(e)\{ const r = document.createRange(); r.selectNodeContents($("letter")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press Ctrl/\uc0\u8984 +C"; \}\
+\}\
+\
+function toMd(r)\{\
+  const L = [];\
+  L.push(`# Appeal review: $\{r.record?.number||"NR"\}`, "");\
+  L.push(`**Date:** $\{r.record?.date||""\} \'b7 **Establishment:** $\{r.record?.establishment||""\} \'b7 **Inspector:** $\{r.record?.inspector||""\}`, "");\
+  L.push("## What the NR says", r.summary||"", "");\
+  L.push(`## Proposed grounds: $\{r.proposedGrounds?.verdict||""\}`, r.proposedGrounds?.headline||"", ...(r.proposedGrounds?.reasoning||[]).map(x=>"- "+x), "");\
+  L.push("## Each citation", ...(r.citations||[]).map(c=>`- **$\{c.regulation\}** ($\{c.contestable\}): $\{c.requires\} $\{c.assessment\}`), "");\
+  L.push("## Where there is real ground", ...(r.grounds||[]).map(g=>`- **$\{g.title\}** ($\{g.strength\}): $\{g.argument\}$\{g.dependsOn?" Holds only if: "+g.dependsOn:""\}`), "");\
+  L.push("## Risks", ...(r.risks||[]).map(x=>"- "+x), "");\
+  if (r.clerical?.length) L.push("## Errors on the record", ...r.clerical.map(x=>"- "+x), "");\
+  L.push("## Recommendation", r.recommendation||"", "", "## Draft appeal letter", "", r.letter||"", "", "## Before sending", ...(r.checklist||[]).map(x=>"- [ ] "+x));\
+  return L.join("\\n");\
+\}\
+function downloadMd()\{\
+  const blob = new Blob([toMd(current)], \{type:"text/markdown"\});\
+  const a = document.createElement("a");\
+  a.href = URL.createObjectURL(blob);\
+  a.download = `appeal-review-$\{(current.record?.number||"nr").replace(/[^\\w-]+/g,"_")\}.md`;\
+  document.body.append(a); a.click(); a.remove();\
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);\
+\}\
+\
+const drop = $("drop"), fileIn = $("file");\
+drop.addEventListener("click", () => fileIn.click());\
+drop.addEventListener("keydown", (e) => \{ if (e.key==="Enter"||e.key===" ")\{ e.preventDefault(); fileIn.click(); \}\});\
+drop.addEventListener("dragover", (e) => \{ e.preventDefault(); drop.classList.add("over"); \});\
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));\
+drop.addEventListener("drop", (e) => \{ e.preventDefault(); drop.classList.remove("over"); const f = e.dataTransfer.files[0]; if (f) setFile(f); \});\
+fileIn.addEventListener("change", () => \{ if (fileIn.files[0]) setFile(fileIn.files[0]); \});\
+$("clearFile").addEventListener("click", () => \{ pdfFile = null; fileIn.value=""; $("fileChip").hidden = true; drop.hidden = false; \});\
+function setFile(f)\{\
+  if (!/pdf$/i.test(f.type) && !/\\.pdf$/i.test(f.name))\{ setStatus("That isn't a PDF. Upload the NR as a PDF or paste its text.", true); return; \}\
+  pdfFile = f; $("fileName").textContent = f.name; $("fileChip").hidden = false; drop.hidden = true; setStatus("");\
+\}\
+\
+function toBase64(file)\{\
+  return new Promise((res, rej) => \{ const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = () => rej(r.error); r.readAsDataURL(file); \});\
+\}\
+\
+const INSTRUCTIONS = `You are a senior USDA-FSIS regulatory compliance advisor reviewing a Noncompliance Record (FSIS Form 5400-4) for a federally inspected poultry processing establishment. The user is the establishment's food safety and quality director and wants an honest assessment of whether to appeal, not reassurance.\
+\
+Apply your knowledge of 9 CFR 416 (416.1\'96416.6 Sanitation Performance Standards; 416.11\'96416.17 SSOP requirements), 9 CFR 417 (HACCP), 9 CFR 381 (poultry inspection, including the appeal right in 381.35), 9 CFR 500 (rules of practice, including NOIE under 500.4 and the appeal reference in 500.9), and FSIS practice for linking associated NRs and for "repeat" findings.\
+\
+Method:\
+1. Extract the record fields exactly as written on the form.\
+2. For each regulation cited, state in plain words what it requires and whether the facts as written support the citation.\
+3. Judge the user's proposed grounds bluntly. If they restate something the inspector already conceded, or argue a standard the regulation doesn't actually set (e.g. "it wasn't dripping" against a requirement to prevent insanitary conditions), say so and why.\
+4. Identify the grounds that do have a realistic chance (procedure followed as written, monitoring records, different root cause from an associated NR, misapplied regulation, factual errors), each with what it depends on. Rate each strong / moderate / weak. Do not invent facts; when a ground depends on records the user hasn't supplied, say what records.\
+5. Note clerical errors or inconsistencies on the form (names, titles, dates, garbled text). Say they rarely void an NR.\
+6. Name the enforcement risks (trends of linked NRs, NOIE exposure, relationship with inspection personnel).\
+7. Recommend: what to accept, what to appeal, and what preventive measures to document regardless.\
+8. Draft a professional, respectful appeal letter addressed to the inspector's immediate supervisor (Frontline Supervisor), appealing only the portions worth appealing. Use the facts the user supplied; use [bracketed placeholders] for anything not supplied. Cite the appeal provision. Sign it with the signer given. If the review recommends against any appeal, set letter to an empty string.\
+9. List the items the user must gather or confirm before sending.\
+\
+Write in short, plain sentences. No hedging filler. Respond with ONLY a JSON object of this shape:\
+\{"record":\{"number":"","date":"","establishment":"","type":"","regulations":[""],"inspector":"","addressedTo":"","personnelNotified":"","associatedNRs":[""],"task":"","location":""\},\
+"summary":"2\'964 sentences on what the NR found and what was done",\
+"proposedGrounds":\{"verdict":"strong|moderate|weak|none","headline":"one short sentence verdict","reasoning":[""]\},\
+"citations":[\{"regulation":"","requires":"","assessment":"","contestable":"yes|partly|no"\}],\
+"grounds":[\{"title":"","strength":"strong|moderate|weak","argument":"","dependsOn":""\}],\
+"clerical":[""],"risks":[""],"recommendation":"","letter":"","checklist":[""]\}`;\
+\
+function setStatus(t, err)\{ const s = $("status"); s.textContent = t; s.classList.toggle("err", !!err); \}\
+\
+async function callGemini(parts)\{\
+  const key = $("apiKey").value.trim();\
+  const modelName = $("model").value;\
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/$\{modelName\}:generateContent?key=$\{key\}`;\
+  \
+  const res = await fetch(url, \{\
+    method: "POST",\
+    headers: \{ "content-type": "application/json" \},\
+    body: JSON.stringify(\{\
+      contents: [\{ parts: parts \}],\
+      generationConfig: \{ responseMimeType: "application/json" \}\
+    \})\
+  \});\
+  \
+  if (!res.ok)\{\
+    let detail = ""; try\{ detail = (await res.json()).error?.message || ""; \}catch(e)\{\}\
+    throw \{code: res.status===400||res.status===403?"bad_key": res.status===429?"rate_limited": res.status>=500?"overloaded":"api", detail\};\
+  \}\
+  \
+  const out = await res.json();\
+  const text = out.candidates?.[0]?.content?.parts?.[0]?.text;\
+  if (!text) throw \{code:"invalid_json"\};\
+  \
+  try \{ return JSON.parse(text); \} catch(e)\{ throw \{code:"invalid_json"\}; \}\
+\}\
+\
+async function analyze()\{\
+  if (busy) return;\
+  const pasted = $("nrText").value.trim();\
+  if (!pdfFile && !pasted)\{ setStatus("Add the NR first: upload the PDF or paste its text.", true); return; \}\
+  if (!$("apiKey").value.trim())\{ $("settings").open = true; $("apiKey").focus(); setStatus("Enter your Gemini API key under API settings.", true); return; \}\
+  saveSettings();\
+  busy = true; $("go").disabled = true; document.body.classList.add("busy");\
+  try\{\
+    const parts = [];\
+    if (pdfFile)\{\
+      setStatus("Reading the PDF\'85");\
+      try \{\
+        const base64Data = await toBase64(pdfFile);\
+        parts.push(\{\
+          inlineData: \{\
+            mimeType: "application/pdf",\
+            data: base64Data\
+          \}\
+        \});\
+      \} catch(e)\{ if (!pasted) throw \{code:"pdf"\}; \}\
+    \}\
+    const grounds = $("grounds").value.trim(), facts = $("facts").value.trim(), signer = $("signer").value.trim();\
+    parts.push(\{\
+      text: `$\{INSTRUCTIONS\}\
+\
+=== NR $\{pdfFile ? "(the attached PDF)" : "TEXT"\} ===\
+$\{pasted || (pdfFile ? "(see attached PDF)" : "")\}\
+\
+=== USER'S PROPOSED APPEAL GROUNDS ===\
+$\{grounds || "(none given \'97 assess whether any appeal is worthwhile)"\}\
+\
+=== ADDITIONAL FACTS FROM THE ESTABLISHMENT ===\
+$\{facts || "(none supplied)"\}\
+\
+=== LETTER SIGNER ===\
+$\{signer || "[Name, Title, Establishment]"\}`\
+    \});\
+    \
+    setStatus("Analyzing the NR with Gemini. This takes about a minute\'85");\
+    const data = await callGemini(parts);\
+    if (!data || typeof data !== "object" || !data.record) throw \{code:"invalid_json"\};\
+    data.id = "r" + Date.now(); data.at = new Date().toLocaleDateString("en-US");\
+    history = [data, ...history.filter(h => !(h.record && data.record && h.record.number && h.record.number === data.record.number))].slice(0, 12);\
+    store.set("nr.history", history);\
+    current = data; render(); setStatus("Review ready.");\
+    $("review").scrollIntoView(\{behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"\});\
+  \} catch(e)\{\
+    const msg = \{\
+      pdf:"Couldn't read that PDF. Paste the NR text instead.",\
+      bad_key:"The API key was rejected. Check it under API settings.",\
+      rate_limited:"Too many requests just now. Wait a minute, then try again.",\
+      overloaded:"The API is busy right now. Try again in a minute.",\
+      invalid_json:"The review came back incomplete. Run it again.",\
+      api:"The API returned an error" + (e && e.detail ? ": " + e.detail : ".")\
+    \}[e && e.code] || "The analysis didn't finish. Check your connection and run it again.";\
+    setStatus(msg, true);\
+  \} finally \{\
+    busy = false; $("go").disabled = false; document.body.classList.remove("busy");\
+  \}\
+\}\
+$("go").addEventListener("click", analyze);\
+\
+const savedSigner = store.get("nr.signer", null); if (savedSigner) $("signer").value = savedSigner;\
+function saveSettings()\{\
+  const remember = $("rememberKey").checked;\
+  store.set("nr.remember", remember);\
+  store.set("nr.key", remember ? $("apiKey").value.trim() : "");\
+  store.set("nr.model", $("model").value);\
+  store.set("nr.signer", $("signer").value.trim());\
+\}\
+$("rememberKey").checked = !!store.get("nr.remember", false);\
+$("apiKey").value = store.get("nr.key", "") || "";\
+const savedModel = store.get("nr.model", null); if (savedModel) $("model").value = savedModel;\
+$("rememberKey").addEventListener("change", saveSettings);\
+$("model").addEventListener("change", saveSettings);\
+render();\
+\})();\
+</script>\
+</body>\
+</html>\
+}
